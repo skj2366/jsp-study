@@ -4,9 +4,11 @@
 	pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-	String foodName = request.getParameter("foodName");
-	String foodPrice = request.getParameter("foodPrice");
-	if (foodName == null) {
+	String ciNum = request.getParameter("ci_num");
+	String ciYear = request.getParameter("ci_Year");
+	String ciName = request.getParameter("ci_Name");
+	String ciVendor = request.getParameter("ci_vendor");
+	if (ciName == null) {
 %>
 <!DOCTYPE html>
 <html>
@@ -16,17 +18,19 @@
 </head>
 <body>
 	<form method="post">
-		메뉴이름 : <input type="text" name="foodName"><br> 
-		메뉴가격 : <input type="number" name="foodPrice"><br>
-		<button>메뉴등록</button>
+		차 이름 : <input type="text" name="ciName"><br> 
+		차 연식 : <input type="number" name="ciYear"><br>
+		차 밴더 : <input type="number" name="ciVendor"><br>
+		차 정보 : <input type="number" name="ciEtc"><br>
+		<button>차량등록</button>
 	</form>
 </body>
 </html>
 <%
 	} else {
 		out.println("등록준비!");
-		String sql = "insert into food(food_num,food_name,food_price)";
-		sql += " values ((select nvl(max(food_num),0)+1 from food),?,?)";
+		String sql = "insert into food(ci_num,ci_name,ci_year,ci_vendor,ci_etc)";
+		sql += " values ((select nvl(max(ci_num),0)+1 from food),?,?,?,?)";
 		PreparedStatement ps = DBCon.getCon().prepareStatement(sql);
 		ps.setString(1, foodName);
 		ps.setString(2, foodPrice);
