@@ -15,6 +15,6 @@ if(cnt==1){
 
 %>
 <script>
-	alert("<%result%>");
+	alert("<%=result%>");
 	location.href="/jsp-study/car/list.jsp";
 </script>
