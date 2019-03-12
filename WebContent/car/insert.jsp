@@ -32,14 +32,16 @@
 		String sql = "insert into food(ci_num,ci_name,ci_year,ci_vendor,ci_etc)";
 		sql += " values ((select nvl(max(ci_num),0)+1 from food),?,?,?,?)";
 		PreparedStatement ps = DBCon.getCon().prepareStatement(sql);
-		ps.setString(1, foodName);
-		ps.setString(2, foodPrice);
+		ps.setString(1, ciName);
+		ps.setString(2, ciYear);
+		ps.setString(3, ciVendor);
+		ps.setString(4, ciEtc);
 		int cnt = ps.executeUpdate();
 		if (cnt == 1) {
-			out.println("메뉴등록 성공!");
+			out.println("차량등록 성공!");
 		} else if (cnt == 0) {
-			out.println("메뉴등록 실패!");
+			out.println("차량등록 실패!");
 		}
-		out.println("<a href=\"/jsp-study/food/list.jsp\">메뉴리스트</a>");
+		out.println("<a href=\"/jsp-study/car/list.jsp\">차량리스트</a>");
 	}
 %>
