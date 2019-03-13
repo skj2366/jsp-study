@@ -4,10 +4,11 @@
 	pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-	String ciNum = request.getParameter("ci_num");
-	String ciYear = request.getParameter("ci_Year");
-	String ciName = request.getParameter("ci_Name");
-	String ciVendor = request.getParameter("ci_vendor");
+	String ciNum = request.getParameter("ciNum");
+	String ciYear = request.getParameter("ciYear");
+	String ciName = request.getParameter("ciName");
+	String ciVendor = request.getParameter("ciVendor");
+	String ciEtc = request.getParameter("ciEtc");
 	if (ciName == null) {
 %>
 <!DOCTYPE html>
@@ -20,8 +21,8 @@
 	<form method="post">
 		차 이름 : <input type="text" name="ciName"><br> 
 		차 연식 : <input type="number" name="ciYear"><br>
-		차 밴더 : <input type="number" name="ciVendor"><br>
-		차 정보 : <input type="number" name="ciEtc"><br>
+		차 밴더 : <input type="text" min=1900 max=2019 name="ciVendor"><br>
+		차 정보 : <input type="text" name="ciEtc"><br>
 		<button>차량등록</button>
 	</form>
 </body>
@@ -29,8 +30,8 @@
 <%
 	} else {
 		out.println("등록준비!");
-		String sql = "insert into food(ci_num,ci_name,ci_year,ci_vendor,ci_etc)";
-		sql += " values ((select nvl(max(ci_num),0)+1 from food),?,?,?,?)";
+		String sql = "insert into car_info(ci_num,ci_name,ci_year,ci_vendor,ci_etc)";
+		sql += " values ((select nvl(max(ci_num),0)+1 from car_info),?,?,?,?)";
 		PreparedStatement ps = DBCon.getCon().prepareStatement(sql);
 		ps.setString(1, ciName);
 		ps.setString(2, ciYear);

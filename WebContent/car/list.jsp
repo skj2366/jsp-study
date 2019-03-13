@@ -66,15 +66,15 @@ if (ciName != null) {
 				ps.setString(cnt++, ciEtc);
 			}
 			ResultSet rs = ps.executeQuery();
-			out.write("<table border=\"1\">");
+			out.write("<table border=\"3\">");
 			while (rs.next()) {
 				out.write("<tr>");
 				out.write("<td>" + rs.getInt("ci_num") + "</td>");
 				out.write("<td>");
-				out.write("<a href=\"/jsp-study/car/view.jsp?ci_num=" + rs.getInt("ci_num") + "\">");
-				out.write("<td>"+ rs.getString("ci_name") + "</a></td>");
-				out.write("<td>" + rs.getInt("ci_year") + "</td>");
-				out.write("<td>" + rs.getInt("ci_year") + "</td>");
+				out.write("<a href=\"/jsp-study/car/view.jsp?ciNum=" + rs.getInt("ci_num") + "\">");
+				out.write(rs.getString("ci_name") + "</a></td>");
+				out.write("<td>" + rs.getString("ci_year") + "</td>");
+				out.write("<td>" + rs.getString("ci_vendor") + "</td>");
 				out.write("<td><button onclick=\"carDelete(" + rs.getInt("ci_num") + ")\">삭제</button></td>");
 				out.write("</tr>");
 			}
@@ -85,7 +85,7 @@ if (ciName != null) {
 			DBCon.close();
 		}
 	%>
-	<a href="/jsp-study/food/insert.jsp">메뉴등록</a>
+	<a href="/jsp-study/car/insert.jsp">차량등록</a>
 	<script>
 		function carDelete(ciNum) {
 			var isDelete = confirm("차량을 삭제하시겠습니까?");

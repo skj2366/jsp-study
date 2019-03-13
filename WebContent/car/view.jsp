@@ -7,7 +7,7 @@
 String ciNum = request.getParameter("ciNum");
 String sql = "select ci_num, ci_name, ci_year, ci_vendor, ci_etc from car_info where ci_num=?";
 PreparedStatement ps = DBCon.getCon().prepareStatement(sql);
-ps.setString(1, ciNums);
+ps.setString(1, ciNum);
 ResultSet rs = ps.executeQuery();
 if(rs.next()) {
 %>
@@ -21,9 +21,9 @@ if(rs.next()) {
 <form method="post"action="/jsp-study/car/update_ok.jsp">
 	차량번호 : <input type="number"name="ciNum"value="<%=ciNum%>"readonly="readonly"><br>
 	차량명 : <input type="text"name="ciName"value="<%=rs.getString("ci_name")%>"><br>
-	차량연식 : <input type="number"name="ciYear"value="<%=rs.getString("ci_year")%>"><br>
-	차량밴더 : <input type="number"name="ciVendor"value="<%=rs.getString("ci_vendor")%>"><br>
-	차량정보 : <input type="number"name="ciEtc"value="<%=rs.getString("ci_etc")%>"><br>	
+	차량연식 : <input type="number"name="ciYear" min=1900 max=2019 value="<%=rs.getString("ci_year")%>"><br>
+	차량밴더 : <input type="text"name="ciVendor"value="<%=rs.getString("ci_vendor")%>"><br>
+	차량정보 : <input type="text"name="ciEtc"value="<%=rs.getString("ci_etc")%>"><br>	
 	<button>수정</button>
 </form>
 <a href="/jsp-study/car/list.jsp">차량리스트</a>

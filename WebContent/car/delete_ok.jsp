@@ -1,3 +1,5 @@
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="test.jsp.study.db.DBCon"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
