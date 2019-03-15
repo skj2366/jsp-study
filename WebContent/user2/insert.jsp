@@ -42,6 +42,7 @@ if(id !=null && name !=null){
 		</tr>
 	</table>
 	<button type="submit">회원가입</button>	
+	<a href="/jsp-study/user2/list.jsp"><button type="button">목록보기</button></a>
 </form>
 </body>
 </html>
